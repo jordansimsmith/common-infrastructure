@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: football-subscriber-client-service
+spec:
+  selector:
+    app: football-subscriber-client
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: football-subscriber-client-deployment
+  labels:
+    app: football-subscriber-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: football-subscriber-client
+  template:
+    metadata:
+      labels:
+        app: football-subscriber-client
+    spec:
+      containers:
+        - name: football-subscriber-client
+          image: docker.pkg.github.com/jordansimsmith/football-subscriber/football-subscriber-client:183d859e4b7eb67e45ed101c4680253ffbc5ac8d
+          ports:
+            - containerPort: 3000
+          env:
+            - name: AUTH0_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: football-subscriber-secret
+                  key: auth0-secret
+            - name: AUTH0_BASE_URL
+              value: http://football-subscriber.jordansimsmith.com
+            - name: AUTH0_ISSUER_BASE_URL
+              value: https://football-subscriber.au.auth0.com
+            - name: AUTH0_CLIENT_ID
+              value: Mb8VqIoDpVDZjMNPKcbNJvpNsEj3ZjuY
+            - name: AUTH0_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: football-subscriber-secret
+                  key: auth0-client-secret
+            - name: AUTH0_AUDIENCE
+              value: https://api.football-subscriber.jordansimsmith.com
+            - name: NEXT_PUBLIC_SERVER_BASE
+              value: http://api.football-subscriber.jordansimsmith.com
+      imagePullSecrets:
+        - name: docker-github-secret
