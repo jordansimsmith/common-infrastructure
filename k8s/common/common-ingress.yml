@@ -16,3 +16,13 @@ spec:
                 name: football-subscriber-client-service
                 port:
                   number: 3000
+    - host: api.football-subscriber.jordansimsmith.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: football-subscriber-server-service
+                port:
+                  number: 80
