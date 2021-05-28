@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: personal-website
-          image: docker.pkg.github.com/jordansimsmith/personal-website/personal-website:cf27062c1c4a8ed5658b1287a711eb4b57346b07
+          image: ghcr.io/jordansimsmith/personal-website:16a40eb79f2c4ac1dba45cd86ead4534d671886f
           ports:
             - containerPort: 80
       imagePullSecrets:
