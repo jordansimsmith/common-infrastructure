@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: football-subscriber-client
-          image: ghcr.io/jordansimsmith/football-subscriber-client:c704fd9d82de976b181a6a009d9c65a94270259f
+          image: ghcr.io/jordansimsmith/football-subscriber-client:6d072b7b25e4b520e5436cf42c2c1c02d699c98b
           ports:
             - containerPort: 3000
           env:
