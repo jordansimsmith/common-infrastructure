@@ -1,0 +1,28 @@
+name: Kubernetes Deploy Workflow
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Kubernetes resources
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Setup doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Save Digital Ocean kubeconfig with short-lived credentials
+        run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ secrets.DIGITALOCEAN_KUBE_CLUSTER }}
+
+      - name: Deploy to Digital Ocean Kubernetes
+        run: kubectl apply --recursive -f k8s/
+
+      - name: Verify deployment rollout
+        run: kubectl get deployments --output name | timeout 300 xargs -n1 -t kubectl rollout status
