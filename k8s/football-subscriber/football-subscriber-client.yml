@@ -38,7 +38,7 @@ spec:
                   name: football-subscriber-secret
                   key: auth0-secret
             - name: AUTH0_BASE_URL
-              value: http://football-subscriber.jordansimsmith.com
+              value: https://football-subscriber.jordansimsmith.com
             - name: AUTH0_ISSUER_BASE_URL
               value: https://football-subscriber.au.auth0.com
             - name: AUTH0_CLIENT_ID
@@ -50,7 +50,5 @@ spec:
                   key: auth0-client-secret
             - name: AUTH0_AUDIENCE
               value: https://api.football-subscriber.jordansimsmith.com
-            - name: NEXT_PUBLIC_SERVER_BASE
-              value: http://api.football-subscriber.jordansimsmith.com
       imagePullSecrets:
         - name: docker-github-secret
