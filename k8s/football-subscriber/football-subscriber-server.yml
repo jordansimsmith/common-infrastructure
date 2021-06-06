@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: football-subscriber-server
-          image: ghcr.io/jordansimsmith/football-subscriber-server:6d072b7b25e4b520e5436cf42c2c1c02d699c98b
+          image: ghcr.io/jordansimsmith/football-subscriber-server:33a4825c1389203d03de03b4b030f08291fbfce8
           ports:
             - containerPort: 80
           env:
@@ -57,5 +57,10 @@ spec:
                 secretKeyRef:
                   name: football-subscriber-secret
                   key: auth0-management-client-secret
+            - name: Hangfire__Password
+              valueFrom:
+                secretKeyRef:
+                  name: football-subscriber-secret
+                  key: hangfire-password
       imagePullSecrets:
         - name: docker-github-secret
