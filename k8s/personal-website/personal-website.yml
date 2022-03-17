@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: personal-website
-          image: ghcr.io/jordansimsmith/personal-website:ff0ba1025dedb723273c13ad84cac7971982efc3
+          image: ghcr.io/jordansimsmith/personal-website:db0e8be2deeb9bfd9fb4b335e3268d232286b6bc
           ports:
             - containerPort: 80
       imagePullSecrets:
