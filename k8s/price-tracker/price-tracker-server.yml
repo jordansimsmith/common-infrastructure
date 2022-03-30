@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: price-tracker-server-service
+spec:
+  selector:
+    app: price-tracker-server
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: price-tracker-server-deployment
+  labels:
+    app: price-tracker-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: price-tracker-server
+  template:
+    metadata:
+      labels:
+        app: price-tracker-server
+    spec:
+      containers:
+        - name: price-tracker-server
+          image: ghcr.io/jordansimsmith/price-tracker-server:097c1d5f643f789595eabc1fad76ac744d26f6a5
+          ports:
+            - containerPort: 80
+          env:
+            - name: ConnectionStrings__PriceTracker
+              valueFrom:
+                secretKeyRef:
+                  name: price-tracker-secret
+                  key: price-tracker-connection-string
+            - name: ConnectionStrings__PriceTrackerHangfire
+              valueFrom:
+                secretKeyRef:
+                  name: price-tracker-secret
+                  key: hangfire-connection-string
+            - name: SendGrid__ApiKey
+              valueFrom:
+                secretKeyRef:
+                  name: price-tracker-secret
+                  key: sendgrid-apikey
+      imagePullSecrets:
+        - name: docker-github-secret
