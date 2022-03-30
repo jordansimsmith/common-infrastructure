@@ -11,6 +11,7 @@ spec:
         - jordansimsmith.com
         - football-subscriber.jordansimsmith.com
         - api.football-subscriber.jordansimsmith.com
+        - price-tracker.jordansimsmith.com
       secretName: common-ingress-tls-secret
 
   rules:
@@ -44,5 +45,16 @@ spec:
             backend:
               service:
                 name: football-subscriber-server-service
+                port:
+                  number: 80
+
+    - host: price-tracker.jordansimsmith.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: price-tracker-server-service
                 port:
                   number: 80
