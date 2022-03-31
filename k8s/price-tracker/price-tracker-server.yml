@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: price-tracker-server
-          image: ghcr.io/jordansimsmith/price-tracker-server:097c1d5f643f789595eabc1fad76ac744d26f6a5
+          image: ghcr.io/jordansimsmith/price-tracker-server:db311284265c1fe0972265a19349668d950ebc3f
           ports:
             - containerPort: 80
           env:
@@ -47,5 +47,10 @@ spec:
                 secretKeyRef:
                   name: price-tracker-secret
                   key: sendgrid-apikey
+            - name: Hangfire__Password
+              valueFrom:
+                secretKeyRef:
+                  name: price-tracker-secret
+                  key: hangfire-password
       imagePullSecrets:
         - name: docker-github-secret
