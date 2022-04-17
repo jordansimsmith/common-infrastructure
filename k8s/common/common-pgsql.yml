@@ -49,9 +49,11 @@ spec:
                 secretKeyRef:
                   name: common-pgsql-secret
                   key: postgres-password
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
           volumeMounts:
             - name: common-pgsql-vol
-              mountPath: /var/lib/postgresql
+              mountPath: /var/lib/postgresql/data
       volumes:
         - name: common-pgsql-vol
           persistentVolumeClaim:
