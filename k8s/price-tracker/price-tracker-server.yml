@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: price-tracker-server
-          image: ghcr.io/jordansimsmith/price-tracker-server:0a3760a80ba3e2c278f305ca7559a1e4b7589e63
+          image: ghcr.io/jordansimsmith/price-tracker-server:7666e1ee1b7803b67d570ab44490913556ce403c
           ports:
             - containerPort: 80
           env:
