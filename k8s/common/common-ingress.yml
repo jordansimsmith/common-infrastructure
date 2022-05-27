@@ -13,6 +13,7 @@ spec:
         - football-subscriber.jordansimsmith.com
         - api.football-subscriber.jordansimsmith.com
         - price-tracker.jordansimsmith.com
+        - archie.jordansimsmith.com
       secretName: common-ingress-tls-secret
 
   rules:
@@ -57,5 +58,16 @@ spec:
             backend:
               service:
                 name: price-tracker-server-service
+                port:
+                  number: 80
+
+    - host: archie.jordansimsmith.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: archie-dashboard-app-service
                 port:
                   number: 80
