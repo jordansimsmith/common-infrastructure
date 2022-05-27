@@ -6,6 +6,9 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     cert-manager.io/cluster-issuer: common-letsencrypt-production-issuer
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+
 spec:
   tls:
     - hosts:
@@ -14,6 +17,7 @@ spec:
         - api.football-subscriber.jordansimsmith.com
         - price-tracker.jordansimsmith.com
         - archie.jordansimsmith.com
+        - api.archie.jordansimsmith.com
       secretName: common-ingress-tls-secret
 
   rules:
@@ -69,5 +73,16 @@ spec:
             backend:
               service:
                 name: archie-dashboard-app-service
+                port:
+                  number: 80
+
+    - host: api.archie.jordansimsmith.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: archie-dashboard-api-service
                 port:
                   number: 80

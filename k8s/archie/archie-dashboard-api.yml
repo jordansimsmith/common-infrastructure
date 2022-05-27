@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: archie-dashboard-api-service
+spec:
+  selector:
+    app: archie-dashboard-api
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: archie-dashboard-api-deployment
+  labels:
+    app: archie-dashboard-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: archie-dashboard-api
+  template:
+    metadata:
+      labels:
+        app: archie-dashboard-api
+    spec:
+      containers:
+        - name: archie-dashboard-api
+          image: ghcr.io/jordansimsmith/archie-dashboard-api:64a55498939323f5ecf89d47e7aa91af2b102f90
+          ports:
+            - containerPort: 80
+          env:
+            - name: ConnectionStrings__ArchieDashboard
+              valueFrom:
+                secretKeyRef:
+                  name: archie-dashboard-api-secret
+                  key: archie-dashboard-connection-string
+            - name: ExternalReporting__Host
+              value: common-rabbitmq-service
+            - name: ExternalReporting__Username
+              valueFrom:
+                secretKeyRef:
+                  name: archie-dashboard-api-secret
+                  key: rabbitmq-username
+            - name: ExternalReporting__Password
+              valueFrom:
+                secretKeyRef:
+                  name: archie-dashboard-api-secret
+                  key: rabbitmq-password
+      imagePullSecrets:
+        - name: docker-github-secret
