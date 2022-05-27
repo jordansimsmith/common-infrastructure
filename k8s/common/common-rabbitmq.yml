@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: common-rabbitmq-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 5672
+  selector:
+    app: common-rabbitmq
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: common-rabbitmq-statefulset
+spec:
+  selector:
+    matchLabels:
+      app: common-rabbitmq
+  serviceName: common-rabbitmq-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: common-rabbitmq
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: common-rabbitmq
+          image: rabbitmq:3.10-alpine
+          ports:
+            - containerPort: 5672
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: common-rabbitmq-secret
+                  key: rabbitmq-user
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: common-rabbitmq-secret
+                  key: rabbitmq-password
