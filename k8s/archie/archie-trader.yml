@@ -37,7 +37,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: archie-trader
-          image: ghcr.io/jordansimsmith/archie-trader:3b91bad7ba4d2411f9db35b67a8fd305a3aaf865
+          image: ghcr.io/jordansimsmith/archie-trader:e1c2629c1bf7276e36fb9bda7fff673474aa2db9
           env:
             - name: ExternalReporting__Host
               value: common-rabbitmq-service
