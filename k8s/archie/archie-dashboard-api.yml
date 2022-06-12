@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: archie-dashboard-api
-          image: ghcr.io/jordansimsmith/archie-dashboard-api:7a5aa931beefb331ca0072a4de48bacd7bca3d92
+          image: ghcr.io/jordansimsmith/archie-dashboard-api:c740df7cc766fc0ee3188a703124ef7d29b11b6f
           ports:
             - containerPort: 80
           env:
