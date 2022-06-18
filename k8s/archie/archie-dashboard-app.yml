@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: archie-dashboard-app
-          image: ghcr.io/jordansimsmith/archie-dashboard-app:7a5aa931beefb331ca0072a4de48bacd7bca3d92
+          image: ghcr.io/jordansimsmith/archie-dashboard-app:d827475b1c25874c5a375f96f2dc3ca9fd7578b1
           ports:
             - containerPort: 80
       imagePullSecrets:
