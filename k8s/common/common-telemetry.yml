@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: common-telemetry-collector-service
+spec:
+  selector:
+    app: common-telemetry-collector
+  ports:
+    - port: 4317
+      protocol: TCP
+      targetPort: 4317
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: common-telemetry-collector-deployment
+  labels:
+    app: common-telemetry-collector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: common-telemetry-collector
+  template:
+    metadata:
+      labels:
+        app: common-telemetry-collector
+    spec:
+      containers:
+        - name: common-telemetry-collector
+          image: ghcr.io/jordansimsmith/telemetry-collector:d3d72b16b1f434ce3b0098cbf6afdf537440f82b
+          ports:
+            - containerPort: 4317
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: common-telemetry-secret
+                  key: new-relic-endpoint
+            - name: NEW_RELIC_LICENSE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: common-telemetry-secret
+                  key: new-relic-license-key
+      imagePullSecrets:
+        - name: docker-github-secret
