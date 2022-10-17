@@ -52,5 +52,7 @@ spec:
                 secretKeyRef:
                   name: price-tracker-secret
                   key: hangfire-password
+            - name: OpenTelemetry__Endpoint
+              value: http://common-telemetry-collector-service:4317
       imagePullSecrets:
         - name: docker-github-secret
