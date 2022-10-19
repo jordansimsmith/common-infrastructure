@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: football-subscriber-server
-          image: ghcr.io/jordansimsmith/football-subscriber-server:40fb562172249c2cc2a6507478541e0af9eef30f
+          image: ghcr.io/jordansimsmith/football-subscriber-server:f875c5530d5a4a26756fb768278b591896823b28
           ports:
             - containerPort: 80
           env:
@@ -62,5 +62,7 @@ spec:
                 secretKeyRef:
                   name: football-subscriber-secret
                   key: hangfire-password
+            - name: OpenTelemetry__Endpoint
+              value: http://common-telemetry-collector-service:4317
       imagePullSecrets:
         - name: docker-github-secret
