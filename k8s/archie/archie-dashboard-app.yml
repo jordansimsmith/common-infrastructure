@@ -31,5 +31,10 @@ spec:
           image: ghcr.io/jordansimsmith/archie-dashboard-app:bd6f4e42b283c221025a6a0bc5323fc000a62618
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              memory: 128M
+            limits:
+              memory: 256M
       imagePullSecrets:
         - name: docker-github-secret

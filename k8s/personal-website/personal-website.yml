@@ -31,5 +31,10 @@ spec:
           image: ghcr.io/jordansimsmith/personal-website:8b9ac9242a3939637f868f98b668fd6ebd1c3c16
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              memory: 128M
+            limits:
+              memory: 256M
       imagePullSecrets:
         - name: docker-github-secret

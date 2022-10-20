@@ -50,5 +50,10 @@ spec:
                   key: auth0-client-secret
             - name: AUTH0_AUDIENCE
               value: https://api.football-subscriber.jordansimsmith.com
+          resources:
+            requests:
+              memory: 128M
+            limits:
+              memory: 256M
       imagePullSecrets:
         - name: docker-github-secret

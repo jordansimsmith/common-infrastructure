@@ -54,5 +54,10 @@ spec:
                   key: hangfire-password
             - name: OpenTelemetry__Endpoint
               value: http://common-telemetry-collector-service:4317
+          resources:
+            requests:
+              memory: 128M
+            limits:
+              memory: 256M
       imagePullSecrets:
         - name: docker-github-secret

@@ -42,5 +42,10 @@ spec:
                 secretKeyRef:
                   name: common-telemetry-secret
                   key: new-relic-license-key
+          resources:
+            requests:
+              memory: 128M
+            limits:
+              memory: 256M
       imagePullSecrets:
         - name: docker-github-secret

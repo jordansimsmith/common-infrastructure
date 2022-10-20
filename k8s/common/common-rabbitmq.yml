@@ -42,3 +42,8 @@ spec:
                 secretKeyRef:
                   name: common-rabbitmq-secret
                   key: rabbitmq-password
+          resources:
+            requests:
+              memory: 128M
+            limits:
+              memory: 256M

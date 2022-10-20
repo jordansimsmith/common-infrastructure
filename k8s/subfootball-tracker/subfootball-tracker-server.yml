@@ -52,5 +52,10 @@ spec:
                 secretKeyRef:
                   name: subfootball-tracker-secret
                   key: sendgrid-apikey
+          resources:
+            requests:
+              memory: 128M
+            limits:
+              memory: 256M
       imagePullSecrets:
         - name: docker-github-secret
