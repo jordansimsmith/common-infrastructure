@@ -58,9 +58,9 @@ spec:
               mountPath: /app/data
           resources:
             requests:
-              memory: 128M
+              memory: 100M
             limits:
-              memory: 256M
+              memory: 200M
       volumes:
         - name: archie-trader-vol
           persistentVolumeClaim:

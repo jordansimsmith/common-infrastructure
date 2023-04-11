@@ -51,8 +51,8 @@ spec:
                   key: rabbitmq-password
           resources:
             requests:
-              memory: 128M
+              memory: 100M
             limits:
-              memory: 256M
+              memory: 200M
       imagePullSecrets:
         - name: docker-github-secret
