@@ -20,6 +20,7 @@ spec:
         - price-tracker.jordansimsmith.com
         - archie.jordansimsmith.com
         - api.archie.jordansimsmith.com
+        - immersion-tracker.jordansimsmith.com
       secretName: common-ingress-tls-secret
 
   rules:
@@ -88,3 +89,14 @@ spec:
                 name: archie-dashboard-api-service
                 port:
                   number: 80
+
+    - host: immersion-tracker.jordansimsmith.com
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: immersion-tracker-server-service
+                port:
+                  number: 8080
