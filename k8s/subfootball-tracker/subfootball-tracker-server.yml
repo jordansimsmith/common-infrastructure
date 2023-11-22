@@ -53,6 +53,6 @@ spec:
             requests:
               memory: 100M
             limits:
-              memory: 200M
+              memory: 300M
       imagePullSecrets:
         - name: docker-github-secret
