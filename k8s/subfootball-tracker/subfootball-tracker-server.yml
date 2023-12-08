@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: subfootball-tracker-server
-          image: ghcr.io/jordansimsmith/subfootball-tracker-server:29d3f6cae60e4a49ee0125910d3af92094e222a1
+          image: ghcr.io/jordansimsmith/subfootball-tracker-server:437c2ae2eb8e89e5158625504f303e0780cbecc0
           ports:
             - containerPort: 80
           env:
