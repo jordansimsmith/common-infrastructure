@@ -28,10 +28,12 @@ spec:
     spec:
       containers:
         - name: immersion-tracker-server
-          image: ghcr.io/jordansimsmith/immersion-tracker-server:39e8d9a6903205e0273889d070ec6ebfb12ddf7d
+          image: ghcr.io/jordansimsmith/immersion-tracker-server:4eb8050bb893dc8b7c670efc871fade9a6db29ce
           ports:
             - containerPort: 8080
           env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://common-telemetry-collector-service:4317
             - name: DATABASE_URL
               value: jdbc:postgresql://common-pgsql-service:5432/immersion_tracker?createDatabaseIfNotExist=true
             - name: DATABASE_USERNAME
