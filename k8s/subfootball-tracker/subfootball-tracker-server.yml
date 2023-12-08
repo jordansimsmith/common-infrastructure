@@ -28,10 +28,12 @@ spec:
     spec:
       containers:
         - name: subfootball-tracker-server
-          image: ghcr.io/jordansimsmith/subfootball-tracker-server:5497b80746d2004df240dfb1d50af11b49d1d92d
+          image: ghcr.io/jordansimsmith/subfootball-tracker-server:cddd73117fead5261316043dd29ce15231d60f7d
           ports:
             - containerPort: 80
           env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://common-telemetry-collector-service:4317
             - name: DATABASE_URL
               value: jdbc:postgresql://common-pgsql-service:5432/subfootball_tracker?createDatabaseIfNotExist=true
             - name: DATABASE_USERNAME
