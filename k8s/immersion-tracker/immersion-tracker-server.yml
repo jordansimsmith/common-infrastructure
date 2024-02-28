@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: immersion-tracker-server
-          image: ghcr.io/jordansimsmith/immersion-tracker-server:ad6bdcf3a402ca37a04a71fbc04cbde2f4fbac24
+          image: ghcr.io/jordansimsmith/immersion-tracker-server:329f38ea2257462e2692a9050f522fd6ed522f3b
           ports:
             - containerPort: 8080
           env:
@@ -56,6 +56,11 @@ spec:
                 secretKeyRef:
                   name: immersion-tracker-secret
                   key: api-password
+            - name: TVDB_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: immersion-tracker-secret
+                  key: tvdb-api-key
           resources:
             requests:
               memory: 100M
