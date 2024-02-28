@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: immersion-tracker-server
-          image: ghcr.io/jordansimsmith/immersion-tracker-server:329f38ea2257462e2692a9050f522fd6ed522f3b
+          image: ghcr.io/jordansimsmith/immersion-tracker-server:3ad50c63e3602e80dd839230a9db1f0961ecd93c
           ports:
             - containerPort: 8080
           env:
@@ -65,6 +65,6 @@ spec:
             requests:
               memory: 100M
             limits:
-              memory: 300M
+              memory: 400M
       imagePullSecrets:
         - name: docker-github-secret
