@@ -28,12 +28,10 @@ spec:
     spec:
       containers:
         - name: immersion-tracker-server
-          image: ghcr.io/jordansimsmith/immersion-tracker-server:6f906103d0d78d55df7649fb19ad7bcf325f2807
+          image: ghcr.io/jordansimsmith/immersion-tracker-server:54c1a16885c56683e04de72ecb272a715b9afcc6
           ports:
             - containerPort: 8080
           env:
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: http://common-telemetry-collector-service:4317
             - name: DATABASE_URL
               value: jdbc:postgresql://common-pgsql-service:5432/immersion_tracker?createDatabaseIfNotExist=true
             - name: DATABASE_USERNAME
@@ -65,6 +63,6 @@ spec:
             requests:
               memory: 100M
             limits:
-              memory: 400M
+              memory: 300M
       imagePullSecrets:
         - name: docker-github-secret
