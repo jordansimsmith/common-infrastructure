@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: immersion-tracker-server
-          image: ghcr.io/jordansimsmith/immersion-tracker-server:e87f278367c82c3afbdb6d9e3afe8a0c4f5e2e02
+          image: ghcr.io/jordansimsmith/immersion-tracker-server:644e13d455c1301d10005c07f20f3a3308e18a13
           ports:
             - containerPort: 8080
           env:
